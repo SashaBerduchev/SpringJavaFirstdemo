@@ -3,6 +3,7 @@ package com.berduchev.springprogectfirst.controller;
 import com.berduchev.springprogectfirst.model.Car;
 import com.berduchev.springprogectfirst.services.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -21,14 +22,12 @@ public class CarController {
     }
 
     @GetMapping("/all")
-    public List<Car> getAllCars(){
-        Car car1 = new Car();
-        car1.brend = "Audi";
-        car1.quantity = 5;
-        car1.fuel = "GasoLine";
-        car1.model = "A5";
-        carService.createCar(car1);
-        return carService.getAllCars();
+    public String getAllCars(Model model){
+        List<Car> cars = carService.getAllCars();
+        Car car = cars.get(1);
+        model.addAttribute("text", car.brend);
+        System.out.println(this);
+        return "cars";
     }
 
     @PostMapping("/create")
