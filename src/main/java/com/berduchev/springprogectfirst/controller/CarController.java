@@ -23,12 +23,18 @@ public class CarController {
     }
 
     @GetMapping("/all")
-    public String getAllCars(Model model){
-        List<Car> cars = carService.getAllCars();
-        Car car = cars.get(1);
-        model.addAttribute("text", car.brend);
-        System.out.println(this);
-        return "cars";
+    public String getAllCars(@RequestParam(name="brend", required=false, defaultValue="World") String brend, Model model){
+        try {
+            List<Car> cars = carService.getAllCars();
+            Car car = cars.get(1);
+            model.addAttribute("brend", car.brend);
+            System.out.println(car.brend);
+            System.out.println(this);
+            return "cars";
+        }catch (Exception exception){
+            System.out.println(exception.getMessage());
+        }
+        return null;
     }
 
     @PostMapping("/create")
