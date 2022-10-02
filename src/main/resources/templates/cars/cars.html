@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
     <link rel="stylesheet" href="../css/linkl.css"/>
 </head>
 <body>
 <div>
     <a class="link" href="Index.html">Home</a>
-    <a class="link" href="MyGroupe.html">MyGroupe</a>
+    <a class="link" href="/car/all">Cars</a>
+    <a class="link" href="/managers/all">Managers</a>
 </div>
 <div>
-    <p th:text="'${brend}'"/>
+    <p th:text="${brend}"/>
+    <a class="btn btn-info"  href="/car/create">Додати</a>
 </div>
 </body>
 </html>

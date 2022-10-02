@@ -7,8 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-
 import java.util.List;
 
 @Controller
@@ -26,20 +24,40 @@ public class CarController {
     public String getAllCars(@RequestParam(name="brend", required=false, defaultValue="World") String brend, Model model){
         try {
             List<Car> cars = carService.getAllCars();
-            Car car = cars.get(1);
-            model.addAttribute("brend", car.brend);
-            System.out.println(car.brend);
+            String brends = "";
+            for(Integer i=0; i<cars.size(); i++){
+                brends += cars.get(i).brend + " ";
+            }
+            model.addAttribute("brend", brends);
+            System.out.println(brends);
             System.out.println(this);
-            return "cars";
+            return "cars/cars";
         }catch (Exception exception){
             System.out.println(exception.getMessage());
         }
         return null;
     }
 
-    @PostMapping("/create")
-    public Car createCar(@RequestBody Car car){
-        return carService.createCar(car);
+    @GetMapping("/create")
+    public String create(){
+        System.out.println(this);
+        return "cars/addcars";
+    }
+    @PostMapping("/createcar")
+    public String createCar(@RequestBody Car car, Model model){
+        System.out.println(car);
+        Car carsave =  carService.createCar(car);
+        System.out.println(carsave);
+        List<Car> cars = carService.getAllCars();
+        String brends = "";
+        for(Integer i=0; i<cars.size(); i++){
+            brends += cars.get(i).brend + " ";
+        }
+        model.addAttribute("brend", brends);
+        System.out.println(brends);
+        System.out.println(this);
+        return "cars/cars";
+
     }
 
     @DeleteMapping("/delete/{id}")
