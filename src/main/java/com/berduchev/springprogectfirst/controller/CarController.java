@@ -23,14 +23,11 @@ public class CarController {
     @GetMapping("/all")
     public String getAllCars(@RequestParam(name="brend", required=false, defaultValue="World") String brend, Model model){
         try {
+
             List<Car> cars = carService.getAllCars();
-            String brends = "";
-            for(Integer i=0; i<cars.size(); i++){
-                brends += cars.get(i).brend + " ";
-            }
-            model.addAttribute("brend", brends);
-            System.out.println(brends);
+            model.addAttribute("cars", cars);
             System.out.println(this);
+            System.out.println(cars);
             return "cars/cars";
         }catch (Exception exception){
             System.out.println(exception.getMessage());
@@ -44,8 +41,17 @@ public class CarController {
         return "cars/addcars";
     }
     @PostMapping("/createcar")
-    public String createCar(@RequestBody Car car, Model model){
-        System.out.println(car);
+    public String createCar(@RequestParam(value = "brend", defaultValue = "Ford")String brend,
+                            @RequestParam(value = "model", defaultValue = "Siera")String modelcar,
+                            @RequestParam(value = "fuel", defaultValue = "Siera")String fuel,
+                            @RequestParam(value = "quantity", defaultValue = "Siera")String quantity,Model model){
+        System.out.println(brend);
+        System.out.println(modelcar);
+        Car car = new Car();
+        car.brend = brend;
+        car.fuel = fuel;
+        car.model = modelcar;
+        car.quantity = Integer.parseInt(quantity);
         Car carsave =  carService.createCar(car);
         System.out.println(carsave);
         List<Car> cars = carService.getAllCars();

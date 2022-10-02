@@ -8,13 +8,32 @@
 </head>
 <body>
 <div>
-    <a class="link" href="Index.html">Home</a>
+    <a class="link" href="/../static/index.html">Home</a>
     <a class="link" href="/car/all">Cars</a>
     <a class="link" href="/managers/all">Managers</a>
 </div>
 <div>
+    <a class="btn btn-info" href="/car/create">Додати</a>
+    <div style="position:relative; top: 10px">
+        <table>
+            <tr>
+                <th>Бренд</th>
+                <th>Модель</th>
+                <th>Паливо</th>
+                <th>Кількість</th>
+            </tr>
+            <tr>
+                <th:block th:each="car :${cars}">
+                    <td th:text="${car.brend}"></td>
+                    <td th:text="${car.model}"></td>
+                    <td th:text="${car.fuel}"></td>
+                    <td th:text="${car.quantity}"></td>
+                </th:block>
+            </tr>
+        </table>
+    </div>
     <p th:text="${brend}"/>
-    <a class="btn btn-info"  href="/car/create">Додати</a>
+
 </div>
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/css/linkl.css"/>
     <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="../css/linkl.css"/>
 </head>
 <body>
 <div>
@@ -12,11 +12,11 @@
     <a class="link" href="/car/all">Cars</a>
     <a class="link" href="/managers/all">Managers</a>
 </div>
-<form th:action="@{/cars/createcar}" th:object="${Car}" method="post">
-    <input type="text" th:field="*{brend}" />
-    <input type="text" th:field="*{model}" />
-    <input type="text" th:field="*{fuel}" />
-    <input type="number" th:field="*{quantity}" />
+<form action="createcar" method="post">
+    <input type="text" name="brend"  />
+    <input type="text" name="model" />
+    <input type="text" name="fuel" />
+    <input type="number" name="quantity" />
     <input class="btn btn-info" type="submit" th:value="ДОдати">
 </form>
 </body>
