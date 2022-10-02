@@ -13,6 +13,7 @@ import java.util.List;
 @RequestMapping("car")
 public class CarController {
 
+
     private final CarService carService;
 
     @Autowired
@@ -65,6 +66,14 @@ public class CarController {
         return "cars/cars";
 
     }
+
+    @GetMapping("/addimage")
+    public String addimage( Model model){
+        List<Car> cars = carService.getAllCars();
+        model.addAttribute("cars", cars);
+        return "/cars/addimage";
+    }
+
 
     @DeleteMapping("/delete/{id}")
     public void deleteCarById(@PathVariable("id") Long id){

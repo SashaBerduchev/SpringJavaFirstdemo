@@ -1,0 +1,10 @@
+<form action="/car/addimage" method="post">
+  <select class="form-control" id="task" name="task">
+    <option th:each="car :${cars}"
+            th:value="${car.brend}"
+            th:text="${car.brend}">
+    </option>
+  </select>
+  <input id = "source_file" style = "size: 50px;" name = "file" type = "file" value = "Выбрать изображение" />
+  <input type = "submit" value = "Submit"/>
+</form>
