@@ -24,14 +24,14 @@ public class ManagerController {
     }
 
     @GetMapping("/all")
-    public String getAllCars(@RequestParam(name="manager", required=false, defaultValue="World") String brend, Model model){
+    public String getAllManagers(@RequestParam(name="manager", required=false, defaultValue="World") String manager, Model model){
         try {
-            List<Manager> managers = managerService.getAllManager();
-            Manager manager = managers.get(0);
-            model.addAttribute("manager", manager.getFirstName());
-            System.out.println(manager.getFirstName());
             System.out.println(this);
-            return "managers";
+            List<Manager> managers = managerService.getAllManager();
+            model.addAttribute("managers", managers);
+            System.out.println(this);
+            System.out.println(managers);
+            return "/managers/managers";
         }catch (Exception exception){
             System.out.println(exception.getMessage());
         }

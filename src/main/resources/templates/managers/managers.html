@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/linkl.css"/>
+</head>
+<body>
+<div>
+    <a class="link" href="/../static/index.html">Home</a>
+    <a class="link" href="/car/all">Cars</a>
+    <a class="link" href="/managers/all">Managers</a>
+</div>
+<div>
+    <div style="position:relative; top: 10px">
+        <table>
+            <tr>
+                <th>Ім'я</th>
+                <th>Прізвище</th>
+                <th>Досвід</th>
+                <th>Продажі</th>
+            </tr>
+            <tr>
+                <th:block th:each="manager :${managers}">
+                    <td th:text="${manager.getFirstName()}"></td>
+                    <td th:text="${manager.getLastName()}"></td>
+                    <td th:text="${manager.getExpiriance()}"></td>
+                    <td th:text="${manager.getSales()}"></td>
+                </th:block>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
