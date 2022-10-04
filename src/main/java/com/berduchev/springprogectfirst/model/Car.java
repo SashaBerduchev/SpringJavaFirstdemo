@@ -23,6 +23,8 @@ public class Car {
     public String model;
     public String fuel;
     public int quantity;
+    public byte[] carimg;
+    public String imgtype;
 
     @JsonIgnore
     @OneToMany(mappedBy = "car")

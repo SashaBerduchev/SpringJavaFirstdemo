@@ -1,10 +1,21 @@
-<form action="/car/addimage" method="post">
-  <select class="form-control" id="task" name="task">
-    <option th:each="car :${cars}"
-            th:value="${car.brend}"
-            th:text="${car.brend}">
-    </option>
-  </select>
-  <input id = "source_file" style = "size: 50px;" name = "file" type = "file" value = "Выбрать изображение" />
-  <input type = "submit" value = "Submit"/>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Загрузить картинку </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+      <form action="/car/upload" method="POST" enctype="multipart/form-data">
+        <select class="form-control" id="task" name="carbrend">
+          <option th:each="car :${cars}"
+          th:value="${car.brend}"
+          th:text="${car.brend}">
+          </option>
+        </select>
+        Файл: <input type = "file" name = "file" />
+        <input type = "submit" value = "Загрузить" />
+    </form>
+
+    </body>
+
+</html>

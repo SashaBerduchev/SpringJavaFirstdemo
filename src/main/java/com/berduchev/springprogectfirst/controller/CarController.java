@@ -2,17 +2,36 @@ package com.berduchev.springprogectfirst.controller;
 
 import com.berduchev.springprogectfirst.model.Car;
 import com.berduchev.springprogectfirst.services.CarService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
+import java.util.Objects;
+
 
 @Controller
 @RequestMapping("car")
 public class CarController {
 
+    private String post;
+    // Получить локальный IP
+    private String host;
+    // Корневой путь к хранилищу изображений
+    private String rootPath = "D:";
+    // Картинка хранится в подкаталоге в корневом каталоге
+    private String sonPath = "/img/";
+    // Получить ссылку на изображение
+    private String imgPath;
+
+    private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 
     private final CarService carService;
 
@@ -73,6 +92,61 @@ public class CarController {
         model.addAttribute("cars", cars);
         return "/cars/addimage";
     }
+
+    @RequestMapping(value = "/upload")
+    @ResponseBody
+    public String upload(@RequestParam(name = "carbrend") String brend, @RequestParam("file") MultipartFile file) {
+        // Возвращаем, является ли загруженный файл пустым, то есть файл не выбран или выбранный файл не имеет содержимого.
+        // Предотвращение загрузки пустых файлов, чтобы вызвать сбой
+        if (file.isEmpty()) {
+            return "Файл пуст";
+        }
+
+        // Получить локальный IP
+        try {
+            host = InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            logger.error("get server host Exception e:", e);
+        }
+
+        // Получить имя файла
+        String fileName = file.getOriginalFilename();
+        //logger.info("Имя загруженного файла: "+ имя_файла);
+        // Установить путь после загрузки файла
+        String filePath = rootPath + sonPath;
+        logger.info ("Путь к загружаемому файлу" + filePath);
+        logger.info ("Весь путь к изображению:" + host + ":" + post + sonPath + fileName);
+
+
+        try {
+            byte[] filestring = file.getBytes();
+            List<Car> cars = carService.getAllCars();
+            Car car = new Car();
+            for(int i = 0; i < cars.size(); i++){
+                if(Objects.equals(cars.get(i).getBrend(), brend)){
+                    car = cars.get(i);
+                }
+            }
+            if(car != null){
+                Car newcar = new Car();
+                newcar.brend = brend;
+                newcar.model = car.model;
+                newcar.fuel = car.fuel;
+                newcar.quantity = car.quantity;
+                newcar.carimg = filestring;
+                newcar.imgtype = file.getContentType();
+                carService.saveimg(newcar);
+                return  "Загрузка успешна";
+            }
+
+            return "Нет машини!";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return  "Загрузка не удалась";
+        }
+    }
+
+
 
 
     @DeleteMapping("/delete/{id}")
