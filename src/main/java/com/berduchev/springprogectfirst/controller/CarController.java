@@ -2,6 +2,7 @@ package com.berduchev.springprogectfirst.controller;
 
 import com.berduchev.springprogectfirst.model.Car;
 import com.berduchev.springprogectfirst.services.CarService;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -55,6 +57,15 @@ public class CarController {
         return null;
     }
 
+    @GetMapping("/getimg")
+    public void getImg(@RequestParam("id") Long id, Model model) throws UnsupportedEncodingException {
+        Car car = carService.getCarById(id);
+        System.out.println(car);
+        Base64 item  = new Base64();
+        byte[] encodeBase64 = item.encode(car.carimg);
+        String base64Encoded = new String(encodeBase64, "UTF-8");
+        model.addAttribute("image", base64Encoded );
+    }
     @GetMapping("/create")
     public String create(){
         System.out.println(this);
