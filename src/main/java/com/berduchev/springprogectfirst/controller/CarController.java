@@ -95,7 +95,7 @@ public class CarController {
 
     @RequestMapping(value = "/upload")
     @ResponseBody
-    public String upload(@RequestParam(name = "carbrend") String brend, @RequestParam("file") MultipartFile file) {
+    public String upload(@RequestParam(name = "carbrend") String brend, @RequestParam("file") MultipartFile file, Model model) {
         // Возвращаем, является ли загруженный файл пустым, то есть файл не выбран или выбранный файл не имеет содержимого.
         // Предотвращение загрузки пустых файлов, чтобы вызвать сбой
         if (file.isEmpty()) {
@@ -142,7 +142,7 @@ public class CarController {
             return "Нет машини!";
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return  "Загрузка не удалась";
+            return  "/error: " + e.getMessage();
         }
     }
 
