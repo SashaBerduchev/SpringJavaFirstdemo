@@ -9,5 +9,4 @@ public interface CarService {
     Car getCarById(Long id);
     Car createCar(Car car);
     void deleteCarById(Long id);
-    Car saveimg(Car car);
 }

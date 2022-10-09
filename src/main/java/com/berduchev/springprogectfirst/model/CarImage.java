@@ -1,13 +1,11 @@
 package com.berduchev.springprogectfirst.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @Entity
 @Table
@@ -15,16 +13,14 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Car {
+public class CarImage {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
-    public String brend;
-    public String model;
-    public String fuel;
-    public int quantity;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "car")
-    private List<Sale> saleList;
+    public String nameCar;
+    public String modelCar;
+    @Column(length = 10000)
+    public byte[] carimg;
+    public String imgtype;
 }

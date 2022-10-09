@@ -5,11 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     </head>
     <body>
-      <form action="/car/upload" method="POST" enctype="multipart/form-data">
+      <form action="/carimg/upload" method="POST" enctype="multipart/form-data">
         <select class="form-control" id="task" name="carbrend">
           <option th:each="car :${cars}"
           th:value="${car.brend}"
           th:text="${car.brend}">
+          </option>
+        </select>
+        <select class="form-control" id="task2" name="carmodel">
+          <option th:each="car :${cars}"
+                  th:value="${car.model}"
+                  th:text="${car.model}">
           </option>
         </select>
         Файл: <input type = "file" name = "file" />
