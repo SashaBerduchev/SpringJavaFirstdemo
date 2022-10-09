@@ -15,31 +15,15 @@
 <div>
     <a class="btn btn-info" href="/car/create">Додати</a>
     <a class="btn btn-info" href="/car/addimage">Додати зображення</a>
-    <div style="position:relative; top: 10px">
-        <table>
-            <tr>
-                <th>Бренд</th>
-                <th>Модель</th>
-                <th>Паливо</th>
-                <th>Кількість</th>
-            </tr>
-            <tr>
-                <th:block th:each="car :${cars}">
-                    <td th:text="${car.brend}"></td>
-                    <td th:text="${car.model}"></td>
-                    <td th:text="${car.fuel}"></td>
-                    <td th:text="${car.quantity}"></td>
-                </th:block>
-            </tr>
-        </table>
-    </div>
+    <a class="btn btn-info" href="/carimg/all">Показати всі зображення</a>
     <div>
         <div th:each="car :${cars}">
             <b th:text="${car.brend}"/>
             <p th:text="${car.model}"/>
             <p th:text="${car.fuel}"/>
             <p th:text="${car.quantity}"/>
-        </div>
+            <img th:src="${'/carimg/getimg?name=' + car.brend}">
+        </img>
     </div>
 
 </div>

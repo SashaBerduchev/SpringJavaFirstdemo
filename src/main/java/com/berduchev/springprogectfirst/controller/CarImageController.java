@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("carimg")
@@ -42,13 +44,33 @@ public class CarImageController {
     public CarImageController(CarImageService carImageService){this.carImageService = carImageService;}
 
     @GetMapping("/getimg")
-    public void getImg(@RequestParam("id") Long id, Model model) throws UnsupportedEncodingException {
-        CarImage carimg = carImageService.getCarImageById(id);
-        System.out.println(carimg);
+    public byte[] getImg(@RequestParam("name") String brend, Model model) throws UnsupportedEncodingException {
+        List<CarImage> carImages = carImageService.getCarImages();
+        CarImage image = new CarImage();
+        for (int i=0; i< carImages.size(); i++){
+            if(Objects.equals(carImages.get(i).nameCar, brend)){
+                image = carImages.get(i);
+            }
+        }
+        System.out.println(image);
         Base64 item  = new Base64();
-        byte[] encodeBase64 = item.encode(carimg.carimg);
-        String base64Encoded = new String(encodeBase64, "UTF-8");
-        model.addAttribute("image", base64Encoded );
+        byte[] encodeBase64 = item.encode(image.carimg);
+        return encodeBase64;
+    }
+
+    @GetMapping("/all")
+    public String getAll(Model model){
+        List<CarImage> images = carImageService.getCarImages();
+        model.addAttribute("images", images);
+        return "carimg/images";
+    }
+    @GetMapping("/getimgid")
+    public byte[] getImgById(@RequestParam("id") Long id, Model model) throws UnsupportedEncodingException {
+        CarImage image = carImageService.getCarImageById(id);
+        System.out.println(image);
+        Base64 item  = new Base64();
+        byte[] encodeBase64 = item.encode(image.carimg);
+        return encodeBase64;
     }
 
     @RequestMapping(value = "/upload")
