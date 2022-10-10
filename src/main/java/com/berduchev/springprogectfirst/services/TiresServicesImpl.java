@@ -2,6 +2,7 @@ package com.berduchev.springprogectfirst.services;
 
 import com.berduchev.springprogectfirst.model.Tires;
 import com.berduchev.springprogectfirst.repository.TiresRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class TiresServicesImpl implements TireService{
 
     private TiresRepository tiresRepository;
 
+    @Autowired
     public TiresServicesImpl(TiresRepository tiresRepository) {
         this.tiresRepository = tiresRepository;
     }
