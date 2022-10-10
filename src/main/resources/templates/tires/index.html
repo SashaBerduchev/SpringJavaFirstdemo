@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+  <a class="link" href="Index.html">Home</a>
+  <a class="link" href="/car/all">Cars</a>
+  <a class="link" href="/managers/all">Managers</a>
+  <a class="link" href="tires/all">Tires</a>
+</div>
+<div>
+  <div th:each="tire :${tires}">
+    <b th:text="${tire.getName()}"/>
+    <p th:text="${tire.getWidth()}"/>
+    <p th:text="${tire.getHeight()}"/>
+    <p th:text="${tire.getRadius()}"/>
+    <p th:text="${tire.getSeasons()}"/>
+    <p th:text="${tire.getTypeOfTire()}"/>
+
+    </img>
+  </div>
+</div>
+</body>
+</html>
