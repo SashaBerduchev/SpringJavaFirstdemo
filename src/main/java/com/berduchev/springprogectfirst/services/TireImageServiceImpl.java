@@ -4,9 +4,11 @@ import com.berduchev.springprogectfirst.model.Tires;
 import com.berduchev.springprogectfirst.model.TiresImages;
 import com.berduchev.springprogectfirst.repository.TiresImagesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TireImageServiceImpl implements TireImageService{
 
     private final TiresImagesRepository tiresImagesRepository;
