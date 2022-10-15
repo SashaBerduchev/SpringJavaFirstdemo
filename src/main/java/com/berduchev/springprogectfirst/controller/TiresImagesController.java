@@ -1,9 +1,5 @@
 package com.berduchev.springprogectfirst.controller;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 import com.berduchev.springprogectfirst.model.CarImage;
 import com.berduchev.springprogectfirst.model.TiresImages;
 import com.berduchev.springprogectfirst.services.TireImageService;
@@ -22,30 +18,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Controller
-<<<<<<< HEAD
-@RequestMapping("tiresimg")
-public class TiresImagesController {
-
-=======
 @RequestMapping("tireimg")
 public class TiresImagesController {
-
-    private final TireImageService imageService;
-
->>>>>>> origin/master
-    private String post;
-    // Получить локальный IP
-    private String host;
-    // Корневой путь к хранилищу изображений
-    private String rootPath = "D:";
-    // Картинка хранится в подкаталоге в корневом каталоге
-    private String sonPath = "/img/";
-    // Получить ссылку на изображение
-    private String imgPath;
-
-    private static final Logger logger = LoggerFactory.getLogger(CarController.class);
-
-<<<<<<< HEAD
 
     private final TireImageService tireImageService;
 
@@ -59,44 +33,32 @@ public class TiresImagesController {
     public byte[] getImgById(@RequestParam("id") Long id, Model model) throws UnsupportedEncodingException {
         TiresImages image = tireImageService.getImageBuId(id);
         System.out.println(image);
-        Base64 item  = new Base64();
+        Base64 item = new Base64();
         byte[] encodeBase64 = item.encode(image.getImage());
         return encodeBase64;
     }
 
     @GetMapping("/all")
-    public String getAll(Model model){
+    public String getAll(Model model) {
         List<TiresImages> images = tireImageService.getAllTireImages();
         model.addAttribute("images", images);
         return "carimg/images";
     }
+
     @GetMapping("/getimg")
     public byte[] getImg(@RequestParam("name") String brend, Model model) throws UnsupportedEncodingException {
         List<TiresImages> carImages = tireImageService.getAllTireImages();
         TiresImages image = new TiresImages();
-        for (int i=0; i< carImages.size(); i++){
-            if(Objects.equals(carImages.get(i).getImage(), brend)){
+        for (int i = 0; i < carImages.size(); i++) {
+            if (Objects.equals(carImages.get(i).getImage(), brend)) {
                 image = carImages.get(i);
-=======
-    @Autowired
-    public TiresImagesController(TireImageService imageService) {
-        this.imageService = imageService;
-    }
-
-
-    @GetMapping("/getimg")
-    public byte[] getImg(@RequestParam("name") String brend, Model model) throws UnsupportedEncodingException {
-        List<TiresImages> images = imageService.getAllTireImages();
-        TiresImages image = new TiresImages();
-        for (int i=0; i< images.size(); i++){
-            if(Objects.equals(images.get(i).getName(), brend)){
-                image = images.get(i);
->>>>>>> origin/master
             }
         }
         System.out.println(image);
-        Base64 item  = new Base64();
+        Base64 item = new Base64();
         byte[] encodeBase64 = item.encode(image.getImage());
         return encodeBase64;
     }
 }
+
+
