@@ -1,5 +1,9 @@
 package com.berduchev.springprogectfirst.controller;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 import com.berduchev.springprogectfirst.model.CarImage;
 import com.berduchev.springprogectfirst.model.TiresImages;
 import com.berduchev.springprogectfirst.services.TireImageService;
@@ -18,9 +22,17 @@ import java.util.List;
 import java.util.Objects;
 
 @Controller
+<<<<<<< HEAD
 @RequestMapping("tiresimg")
 public class TiresImagesController {
 
+=======
+@RequestMapping("tireimg")
+public class TiresImagesController {
+
+    private final TireImageService imageService;
+
+>>>>>>> origin/master
     private String post;
     // Получить локальный IP
     private String host;
@@ -33,6 +45,7 @@ public class TiresImagesController {
 
     private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 
+<<<<<<< HEAD
 
     private final TireImageService tireImageService;
 
@@ -64,6 +77,21 @@ public class TiresImagesController {
         for (int i=0; i< carImages.size(); i++){
             if(Objects.equals(carImages.get(i).getImage(), brend)){
                 image = carImages.get(i);
+=======
+    @Autowired
+    public TiresImagesController(TireImageService imageService) {
+        this.imageService = imageService;
+    }
+
+
+    @GetMapping("/getimg")
+    public byte[] getImg(@RequestParam("name") String brend, Model model) throws UnsupportedEncodingException {
+        List<TiresImages> images = imageService.getAllTireImages();
+        TiresImages image = new TiresImages();
+        for (int i=0; i< images.size(); i++){
+            if(Objects.equals(images.get(i).getName(), brend)){
+                image = images.get(i);
+>>>>>>> origin/master
             }
         }
         System.out.println(image);

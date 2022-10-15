@@ -18,7 +18,6 @@ public class TireImageServiceImpl implements TireImageService{
         this.tiresImagesRepository = tiresImagesRepository;
     }
 
-
     @Override
     public List<TiresImages> getAllTireImages() {
         return tiresImagesRepository.findAll();
