@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="../css/linkl.css"/>
+</head>
+<body>
+<div>
+  <a class="link" href="Index.html">Home</a>
+  <a class="link" href="/car/all">Cars</a>
+  <a class="link" href="/managers/all">Managers</a>
+  <a class="link" href="tires/all">Tires</a>
+</div>
+
+<div>
+  <form action="createtire" method="post">
+    <p>Бренд</p><input type="text" name="Name">
+    <p>Ширина</p><input type="text" name="width">
+    <p>Висота</p><input type="text" name="height">
+    <p>Радіус</p><input type="text" name="radius">
+    <p>Сезон</p><input type="text" name="Seasons">
+    <p>Тип шини</p><input type="text" name="TypeOfTire">
+  </form>
+</div>
+</body>
+</html>
