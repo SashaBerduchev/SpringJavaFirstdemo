@@ -29,7 +29,7 @@ public class TiresController {
     public String getTireCreate(){
         return "tires/addtire";
     }
-    @GetMapping("/createtire")
+    @GetMapping("/creative")
     public String setTire(@RequestParam(name = "Name") String name,
                           @RequestParam(name = "width") String width,
                           @RequestParam(name = "height") String height,
