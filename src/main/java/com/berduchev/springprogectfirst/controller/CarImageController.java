@@ -1,5 +1,6 @@
 package com.berduchev.springprogectfirst.controller;
 
+import com.berduchev.springprogectfirst.Tools.Trace;
 import com.berduchev.springprogectfirst.model.CarImage;
 import com.berduchev.springprogectfirst.services.CarImageService;
 import com.berduchev.springprogectfirst.services.CarService;
@@ -87,6 +88,7 @@ public class CarImageController {
             host = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
             logger.error("get server host Exception e:", e);
+            Trace.writeTrace(e.getMessage());
         }
 
         // Получить имя файла
