@@ -74,12 +74,6 @@ public class CarController {
         model.addAttribute("cars", cars);
         return "/cars/addimage";
     }
-
-
-
-
-
-
     @DeleteMapping("/delete/{id}")
     public void deleteCarById(@PathVariable("id") Long id){
         carService.deleteCarById(id);
