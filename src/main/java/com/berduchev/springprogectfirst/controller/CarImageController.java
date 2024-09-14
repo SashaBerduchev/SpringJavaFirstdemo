@@ -54,6 +54,7 @@ public class CarImageController {
             }
         }
         System.out.println(image);
+        System.out.println(image.carimg.length);
         Base64 item  = new Base64();
         byte[] encodeBase64 = item.encode(image.carimg);
         return encodeBase64;
