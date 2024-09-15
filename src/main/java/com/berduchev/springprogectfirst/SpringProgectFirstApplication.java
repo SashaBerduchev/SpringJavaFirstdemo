@@ -11,5 +11,4 @@ public class SpringProgectFirstApplication {
 		SpringApplication.run(SpringProgectFirstApplication.class, args);
 		Trace.writeTrace("Start");
 	}
-
 }

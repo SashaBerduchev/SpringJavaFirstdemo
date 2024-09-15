@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.awt.print.Book;
 
 @Entity
 @Table
@@ -14,17 +14,17 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Manager {
+public class BooksShelf {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String FirstName;
-    private String LastName;
-    private String passportid;
-    private int expiriance;
-    private int sales;
-    @OneToMany(mappedBy = "manager")
-    private List<Sale> saleList;
-    @OneToMany(mappedBy = "manager")
-    private List<BooksShelf> booksShelf;
+    private String Name;
+    @ManyToOne
+    @JoinColumn(name = "book_id", nullable = false)
+    private Book book;
+
+    @ManyToOne
+    @JoinColumn(name = "manager_id", nullable = false)
+    private Manager manager;
+    private int quantity;
 }
